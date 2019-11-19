@@ -4,6 +4,7 @@ int main()
 	int score[5][4] = { 0 };
 	int average[5] = { 0 };
 
+
 	for (int i = 0; i < 5; i++)
 	{
 		printf("ÇĞ»ı %d >>", i + 1);
@@ -12,25 +13,23 @@ int main()
 
 	for (int a = 0; a < 5; a++)
 	{
-		int average = 0,sum;
+		int sum=0;
 		for (int b = 0; b < 4; b++)
 		{
 			sum += score[a][b];
 		}
 
-		average = sum / 4;
-
-		average[a] = average;
+		average[a] = sum / 4;
 	}
 
 	for (int c = 0; c < 5; c++)
 	{
 		if (average[c] >= 80)
 		{
-			printf("pass");
+			printf("pass\n");
 		}
 		else
-			printf("fail");
+			printf("fail\n");
 	}
 
 }
