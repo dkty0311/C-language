@@ -2,30 +2,21 @@
 
 int main()
 {
-	int a[100] = { 0 };
-	int* c = NULL;
+	int* numPtr=NULL;      
+	int num1[100] = { 0 };
+	static int i = 0;
 
-
-
-	for (int i = 0; i < 100; i++)
+	for (i=0; i < 100; i++)
 	{
-		c = &a[i];
+		numPtr = &num1[i];
 		printf("ют╥б>> ");
-		scanf_s("%d", c);
-	}
+		scanf_s("%d", numPtr + i);
 
-	for (int j = 0; j < 100; j++)
-	{
-		c = &a[j];
-		if (*c == 0)
+		if (*(numPtr + i) == 0)
 		{
-			for (int b = 100; b < 0; b++)
-			{
-				c = &a[b];
-				printf("%d ", *c);
-			}
-			
+			for (int x = 0; x < i; x++)
+				printf("%d", *(numPtr+x));
+				break;
 		}
-
 	}
 }
