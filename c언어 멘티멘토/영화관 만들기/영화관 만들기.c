@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "struct.h"
 #define SIZE 10
 #define INFORM 5
 int choice_menu();

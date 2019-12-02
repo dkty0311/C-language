@@ -18,5 +18,8 @@
     <ClCompile Include="영화관 만들기.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="struct.h">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
