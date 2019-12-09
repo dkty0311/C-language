@@ -2,6 +2,7 @@
 #include <string.h>
 #include "register.h"
 #include "accomodation.h"
+#include "show_choice_meny.h"
 
 int choice_menu();
 void start_menu();
@@ -34,40 +35,12 @@ int main()
 }
 
 
-int choice_menu()
-{
-	int a;
-	printf("1.예약\n2.취소\n3.종료\n");
-	printf("메뉴를 선택하시오 : ");
-	scanf_s("%d", &a);
-	return a;
-}
 
 
 
 
 
-void start_menu()
-{
-	for (int i = 0; i <= SIZE + 5; i++)
-		printf("■");
 
-	printf("\n■■   ");
-
-	for (int a = 1; a <= SIZE; a++)
-		printf("%d ", a);
-
-	printf("■■\n");
-
-}
-
-void end_menu()
-{
-	for (int i = 0; i <= SIZE + 5; i++)
-		printf("■");
-	printf("\n");
-
-}
 
 
 

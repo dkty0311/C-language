@@ -146,12 +146,15 @@
   <ItemGroup>
     <ClCompile Include="accomodation.c" />
     <ClCompile Include="accomodation_cancel.c" />
+    <ClCompile Include="choice_menu.c" />
+    <ClCompile Include="menu_design.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="register.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="accomodation.h" />
     <ClInclude Include="register.h" />
+    <ClInclude Include="show_choice_meny.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
