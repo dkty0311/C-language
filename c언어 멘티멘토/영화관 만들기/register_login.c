@@ -1,6 +1,8 @@
-#include "register.h"
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
+#include "register.h"
+#include "accomodation.h"
+#include "show_choice_menu.h"
 
 int login_or_register()
 {
@@ -17,7 +19,7 @@ int login_or_register()
 
 	};
 
-	struct information list[INFORM] = { 0 };
+	struct information list[INFORM];
 
 	while (1)
 	{
@@ -49,7 +51,7 @@ int login_or_register()
 
 			if (rep_number == 0)
 			{
-				//중복시 해당배열에 저장된 id정보 삭제
+//중복시 해당배열에 저장된 id정보 삭제
 				break;
 			}
 
@@ -60,32 +62,43 @@ int login_or_register()
 			break;
 
 		case 2:
-			printf("ID를 입력하세요 :");
-			scanf_s("%s", userid, 10);
-
-			for (rep_check = 0; rep_check <= user_max; rep_check++)
+			while (1)
 			{
-				if (strcmp(userid, list[rep_check].userid) == 0)
+				printf("ID를 입력하세요 :");
+				scanf_s("%s", userid, 10);
+
+				for (rep_check = 0; rep_check <= user_max; rep_check++)
 				{
-					printf("없는 아이디입니다");
-					break;
+
+					if (strcmp(userid, list[rep_check].userid) == 1)
+					{
+						printf("없는 아이디입니다\n");
+						continue;
+					}
+					else
+						break;
+				}
+				break;
+			}
+			
+			while (1)
+			{
+
+				printf("PW를 입력하세요 :");
+				scanf_s("%s", userpw, 10);
+
+				for (rep_check = 0; rep_check < user_max; rep_check++)
+				{
+					if (strcmp(list[rep_check].userid, userid) == 0 && strcmp(list[rep_check].userpw, userpw) == 0)            //해당배열의 아이디와 비번이같으면 로그인
+					{
+						printf("로그인 성공!\n\n");
+						return 0;
+					}
+					else
+						printf("비밀번호가 다릅니다\n");
 				}
 			}
-
-			printf("PW를 입력하세요 :");
-			scanf_s("%s", userpw, 10);
-			break;
-
-			for (rep_check = 0; rep_check < user_max; rep_check++)
-			{
-				if (strcmp(list[rep_check].userid, userid) == 0 && strcmp(list[rep_check].userpw, userpw) == 0)            //해당배열의 아이디와 비번이같으면 로그인
-				{
-					printf("로그인 성공!\n\n");
-					return 0;
-				}
-			}
-			if (rep_check == user_max) printf("다시 로그인해주세요!\n\n");
-			break;
+	
 
 		case 3:
 			exit();
