@@ -21,15 +21,12 @@
     <ClInclude Include="accomodation.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="show_choice_meny.h">
+    <ClInclude Include="show_choice_menu.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="register.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="accomodation.c">
@@ -42,6 +39,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="menu_design.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="register_login.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,3 +1,4 @@
+#define SIZE 10
 
 void start_menu()
 {

@@ -1,14 +1,23 @@
 #include "register.h"
-
-
-#define INFORM 5
+#include <string.h>
+#include <stdio.h>
 
 int login_or_register()
 {
-	char user_information[INFORM][2][10] = { 0 };       // ID, PW배열 선언(최대 글자수:9이하)
+
 	int  user_max = 0, rep_check = 0;                   // user_max:현재 회원숫자, rep_check:중복체크 상수
 	char userid[10], userpw[10];
 
+	struct information
+	{
+		char userid[15];
+		char userpw[15];
+		int age;
+		char name[30];
+
+	};
+
+	struct information list[INFORM] = { 0 };
 
 	while (1)
 	{
@@ -26,11 +35,11 @@ int login_or_register()
 				break;
 			}
 			printf("생성할 ID를 입력하세요 <최대 9자> :");
-			scanf_s("%s", user_information[user_max][0], 10);
+			scanf_s("%s", list[user_max].userid,10);
 
 			for (rep_check = 0; rep_check < user_max; rep_check++)
 			{
-				if (strcmp(user_information[user_max][0], user_information[rep_check][0]) == 0)
+				if (strcmp(list[user_max].userid, list[rep_check].userid) == 0)
 				{
 					printf("이미 생성된 ID입니다.\n\n");
 					rep_number = 0;
@@ -40,12 +49,12 @@ int login_or_register()
 
 			if (rep_number == 0)
 			{
-				user_information[user_max][0] == 0;                  //중복시 해당배열에 저장된 id정보 삭제
+				//중복시 해당배열에 저장된 id정보 삭제
 				break;
 			}
 
 			printf("생성할 PW를 입력하세요 <최대 9자> :");
-			scanf_s("%s", user_information[user_max][1], 10);
+			scanf_s("%s", list[user_max].userpw,10);
 			printf("가입을 축하합니다!!\n");
 			user_max++;
 			break;
@@ -56,20 +65,20 @@ int login_or_register()
 
 			for (rep_check = 0; rep_check <= user_max; rep_check++)
 			{
-				if (strcmp(userid, user_information[rep_check][0]) == 1)
+				if (strcmp(userid, list[rep_check].userid) == 0)
 				{
-					printf("없는 아이디입니다 다시입력해주세요\n\n"); //수정해야할부분
+					printf("없는 아이디입니다");
+					break;
 				}
 			}
 
-
-
 			printf("PW를 입력하세요 :");
 			scanf_s("%s", userpw, 10);
+			break;
 
 			for (rep_check = 0; rep_check < user_max; rep_check++)
 			{
-				if (strcmp(user_information[rep_check][0], userid) == 0 && strcmp(user_information[rep_check][1], userpw) == 0)            //해당배열의 아이디와 비번이같으면 로그인
+				if (strcmp(list[rep_check].userid, userid) == 0 && strcmp(list[rep_check].userpw, userpw) == 0)            //해당배열의 아이디와 비번이같으면 로그인
 				{
 					printf("로그인 성공!\n\n");
 					return 0;

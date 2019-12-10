@@ -2,11 +2,9 @@
 #include <string.h>
 #include "register.h"
 #include "accomodation.h"
-#include "show_choice_meny.h"
+#include "show_choice_menu.h"
 
-int choice_menu();
-void start_menu();
-void end_menu();
+#define INFORM 5
 
 int main()
 {
