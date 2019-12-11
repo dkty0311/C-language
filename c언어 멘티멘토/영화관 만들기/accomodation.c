@@ -30,6 +30,7 @@ void accomodation(int seats[SIZE][SIZE])
 
 	printf("원하는 좌석의 행과 열을 입력해주세요.");
 	scanf_s("%d %d", &row_seats_number, &col_seats_number);
+
 	if (seats[row_seats_number - 1][col_seats_number - 1] == 0)
 	{
 		seats[row_seats_number - 1][col_seats_number - 1] = 1;

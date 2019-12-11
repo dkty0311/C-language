@@ -1,10 +1,8 @@
 #include <stdio.h>
-#include <string.h>
 #include "register.h"
 #include "accomodation.h"
 #include "show_choice_menu.h"
 
-#define INFORM 5
 
 int main()
 {

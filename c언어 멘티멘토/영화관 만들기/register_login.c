@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "register.h"
-#include "accomodation.h"
-#include "show_choice_menu.h"
+
 
 int login_or_register()
 {
@@ -12,19 +11,19 @@ int login_or_register()
 
 	struct information
 	{
-		char userid[15];
+		char userid[15];								//구조체 선언
 		char userpw[15];
 		int age;
 		char name[30];
 
 	};
 
-	struct information list[INFORM];
+	struct information list[INFORM] = { 0 };
 
 	while (1)
 	{
 		int option;
-		int rep_number = 1;
+		int rep_number = 1;             //중복 상수 중복되면 중복상수 1로 초기화
 		printf("■■■■■■■■\n■1. 회원가입 ■\n■2. 로 그 인 ■\n■3. 종료     ■\n■■■■■■■■\n");
 		scanf_s("%d", &option);
 
@@ -50,13 +49,17 @@ int login_or_register()
 			}
 
 			if (rep_number == 0)
-			{
-//중복시 해당배열에 저장된 id정보 삭제
 				break;
-			}
-
+			
 			printf("생성할 PW를 입력하세요 <최대 9자> :");
 			scanf_s("%s", list[user_max].userpw,10);
+			
+			printf("이름을 입력해주세요");
+			scanf_s("%s", list[user_max].name, 30);              /////////////////////////////////////////////////////////
+
+			printf("나이를 입력해주세요");
+			scanf_s("%d", list[user_max].age);///////////////////////////////////////////////////////////////////
+
 			printf("가입을 축하합니다!!\n");
 			user_max++;
 			break;
