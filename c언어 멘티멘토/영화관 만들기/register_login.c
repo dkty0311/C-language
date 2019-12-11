@@ -3,11 +3,14 @@
 #include "register.h"
 
 
+
 int login_or_register()
 {
 
+
 	int  user_max = 0, rep_check = 0;                   // user_max:현재 회원숫자, rep_check:중복체크 상수
 	char userid[10], userpw[10];
+
 
 	struct information
 	{

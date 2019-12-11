@@ -1,11 +1,16 @@
 #include "accomodation.h"
-#define SIZE 10
+#include <stdio.h>
+
+
+
 
 void accomodation(int seats[SIZE][SIZE])
 {
 	int i, c, row_seats_number, col_seats_number;
 
+
 	start_menu();
+
 
 	for (i = 0; i < SIZE; i++)
 	{
@@ -34,6 +39,7 @@ void accomodation(int seats[SIZE][SIZE])
 	if (seats[row_seats_number - 1][col_seats_number - 1] == 0)
 	{
 		seats[row_seats_number - 1][col_seats_number - 1] = 1;
+
 		printf("예약되었습니다.\n");
 	}
 	else

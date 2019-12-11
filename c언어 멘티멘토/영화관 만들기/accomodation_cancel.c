@@ -1,9 +1,11 @@
 #include "accomodation.h"
-#define SIZE 10
+#include <stdio.h>
+
 
 void accomodation_cancel(int seats[SIZE][SIZE])
 {
 	int i, c, row_seats_number, col_seats_number;
+
 
 	start_menu();
 

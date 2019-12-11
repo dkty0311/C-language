@@ -1,4 +1,5 @@
 #include "show_choice_menu.h"
+#include <stdio.h>
 
 int choice_menu()
 {
