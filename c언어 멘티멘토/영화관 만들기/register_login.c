@@ -58,7 +58,7 @@ int login_or_register()
 			scanf_s("%s", list[user_max].name, 30);              /////////////////////////////////////////////////////////
 
 			printf("나이를 입력해주세요");
-			scanf_s("%d", list[user_max].age);///////////////////////////////////////////////////////////////////
+			scanf_s("%d", &list[user_max].age);///////////////////////////////////////////////////////////////////
 
 			printf("가입을 축하합니다!!\n");
 			user_max++;
@@ -67,7 +67,7 @@ int login_or_register()
 		case 2:
 			while (1)
 			{
-				printf("ID를 입력하세요 :");
+				printf("아이디를 입력하세요 :");
 				scanf_s("%s", userid, 10);
 
 				for (rep_check = 0; rep_check <= user_max; rep_check++)
@@ -87,7 +87,7 @@ int login_or_register()
 			while (1)
 			{
 
-				printf("PW를 입력하세요 :");
+				printf("패스워드를 입력하세요 :");
 				scanf_s("%s", userpw, 10);
 
 				for (rep_check = 0; rep_check < user_max; rep_check++)
@@ -95,6 +95,7 @@ int login_or_register()
 					if (strcmp(list[rep_check].userid, userid) == 0 && strcmp(list[rep_check].userpw, userpw) == 0)            //해당배열의 아이디와 비번이같으면 로그인
 					{
 						printf("로그인 성공!\n\n");
+						printf("아이디 : %s\n이름 : %s\n나이 : %d \n\n", list[rep_check].userid, list[rep_check].name, list[rep_check].age);
 						return 0;
 					}
 					else
