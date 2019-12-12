@@ -40,7 +40,7 @@ int login_or_register()
 		{
 		case 1:
 
-			fread(&list[user_max - 1], sizeof(struct information), INFORM, fp);
+			fread(&list[user_max], sizeof(struct information), INFORM, fp);
 
 			if (list[INFORM-1].user_max1 != NULL)          // 회원수 초과시 (회원수=5)
 			{
@@ -89,7 +89,9 @@ int login_or_register()
 			while (1)
 			{
 
-				
+				FILE* fp = fopen("data2.txt", "r");
+
+				fread(&list[user_max-1], sizeof(struct information), INFORM, fp);
 				
 				printf("아이디를 입력하세요 :");
 				scanf_s("%s", userid, 10);
