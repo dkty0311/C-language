@@ -2,6 +2,7 @@
 #include <string.h>
 #include "register.h"
 
+#define _CRT_SECURE_NO_WARNINGS
 
 
 int login_or_register()
@@ -22,6 +23,13 @@ int login_or_register()
 	};
 
 	struct information list[INFORM] = { 0 };
+
+	FILE* fp = fopen("data2.bin", "rb");
+	
+	for (int i = 0; i < INFORM; i++)
+	{
+		fread(list[i].userid, list[i].userpw, &list[i].age, list[i].name);
+	}
 
 	while (1)
 	{
