@@ -34,15 +34,15 @@ int login_or_register()
 		int rep_number = 1;             //중복 상수 중복되면 중복상수 1로 초기화
 		printf("■■■■■■■■\n■1. 회원가입 ■\n■2. 로 그 인 ■\n■3. 종료     ■\n■■■■■■■■\n");
 		scanf_s("%d", &option);
-		FILE* fp = fopen("data2.txt", "r");
+		FILE* fp;
 
 		switch (option)
 		{
 		case 1:
+			fp= fopen("data2.txt", "r");
+			fread(&list[user_max-1], sizeof(struct information), INFORM, fp);
 
-			fread(&list[user_max], sizeof(struct information), INFORM, fp);
-
-			if (list[INFORM-1].user_max1 != NULL)          // 회원수 초과시 (회원수=5)
+			if (list[INFORM-1].user_max1 !=NULL)          // 회원수 초과시 (회원수=5)
 			{
 				printf("회원이 너무 많습니다.\n");
 				break;
