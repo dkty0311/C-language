@@ -1,4 +1,4 @@
 #pragma once
-#define INFORM 1
+#define INFORM 2
 
 int login_or_register();

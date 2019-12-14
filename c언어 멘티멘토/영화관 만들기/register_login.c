@@ -33,20 +33,22 @@ int login_or_register()
 		int option;
 		int rep_number = 1;             //중복 상수 중복되면 중복상수 1로 초기화
 		printf("■■■■■■■■\n■1. 회원가입 ■\n■2. 로 그 인 ■\n■3. 종료     ■\n■■■■■■■■\n");
-		scanf_s("%d", &option);    
+		scanf_s("%d", &option);
+		FILE* fp;
 
-		if (option == 1)
+		switch (option)
 		{
-			FILE* fp = fopen("data2.txt", "rt");
-			fread(&list[user_max - 1], sizeof(struct information), INFORM, fp);
+		case 1:
+			fp= fopen("data2.txt", "r");
+			fread(&list[user_max-1], sizeof(struct information), INFORM, fp);
 
-			if (list[user_max].user_max1==4)                       // 회원수 초과시 (회원수=5)
+			if (list[INFORM-1].user_max1 !=NULL)          // 회원수 초과시 (회원수=5)
 			{
 				printf("회원이 너무 많습니다.\n");
 				break;
 			}
 			printf("생성할 ID를 입력하세요 <최대 9자> :");
-			scanf_s("%s", list[user_max].userid, 10);
+			scanf_s("%s", list[user_max].userid,10);
 
 			for (rep_check = 0; rep_check < user_max; rep_check++)
 			{
@@ -60,40 +62,37 @@ int login_or_register()
 
 			if (rep_number == 0)
 				break;
-			else
-			{
-				printf("생성할 PW를 입력하세요 <최대 9자> :");
-				scanf_s("%s", list[user_max].userpw, 10);
-
-				printf("이름을 입력해주세요");
-				scanf_s("%s", list[user_max].name, 30);              /////////////////////////////////////////////////////////
-
-				printf("나이를 입력해주세요");
-				scanf_s("%d", &list[user_max].age);///////////////////////////////////////////////////////////////////
-
-				printf("가입을 축하합니다!!\n");
-
-				list[user_max].user_max1 = user_max;
-				user_max++;
-
-				FILE* fp = fopen("data2.txt", "at");
-
-				fwrite(&list[user_max - 1], sizeof(struct information), 1, fp);
-				fclose(fp);
-
-				break;
-			}
-
 			
-		}
+			printf("생성할 PW를 입력하세요 <최대 9자> :");
+			scanf_s("%s", list[user_max].userpw,10);
+			
+			printf("이름을 입력해주세요");
+			scanf_s("%s", list[user_max].name, 30);              /////////////////////////////////////////////////////////
 
-		else if (option == 2)
-		{
+			printf("나이를 입력해주세요");
+			scanf_s("%d", &list[user_max].age);///////////////////////////////////////////////////////////////////
+
+			printf("가입을 축하합니다!!\n");
+
+			list[user_max].user_max1 = user_max;
+			user_max++;
+
+			FILE* fp = fopen("data2.txt", "a");
+		
+			fwrite(&list[user_max - 1], sizeof(struct information), 1, fp);
+			fclose(fp);
+
+			break;
+
+
+		case 2:
 			while (1)
 			{
 
+				FILE* fp = fopen("data2.txt", "r");
 
-
+				fread(&list[user_max-1], sizeof(struct information), INFORM, fp);
+				
 				printf("아이디를 입력하세요 :");
 				scanf_s("%s", userid, 10);
 
@@ -108,7 +107,7 @@ int login_or_register()
 					else
 						break;
 				}
-
+			
 
 				printf("패스워드를 입력하세요 :");
 				scanf_s("%s", userpw, 10);
@@ -119,7 +118,7 @@ int login_or_register()
 					{
 						printf("로그인 성공!\n\n");
 						printf("아이디 : %s\n이름 : %s\n나이 : %d \n\n", list[rep_check].userid, list[rep_check].name, list[rep_check].age);
-
+						fclose(fp);
 						return 0;
 					}
 					else
@@ -128,8 +127,10 @@ int login_or_register()
 					}
 				}
 			}
-		}
-		else if(option==3)
+	
+
+		case 3:
 			exit();
 		}
 	}
+}
