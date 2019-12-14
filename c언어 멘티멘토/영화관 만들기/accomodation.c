@@ -23,7 +23,7 @@ void accomodation(int seats[SIZE][SIZE],int rep_check_l)
 		{
 			if (list[rep_check_l].seats[r][c] ==1)
 			{
-				printf("%d %d ", r+1, c-1);
+				printf("행:%d 열:%d ", r+1, c+1);
 				
 
 			}
@@ -57,13 +57,13 @@ void accomodation(int seats[SIZE][SIZE],int rep_check_l)
 	printf("원하는 좌석의 행과 열을 입력해주세요.");
 	scanf_s("%d %d", &row_seats_number, &col_seats_number);
 
-	if (seats[row_seats_number - 1][col_seats_number - 1] == 0)
+	if (seats[row_seats_number-1][col_seats_number-1] == 0)
 	{
-		seats[row_seats_number - 1][col_seats_number - 1] = 1;
+		seats[row_seats_number-1][col_seats_number-1] = 1;
 
 		printf("예약되었습니다.\n");
 		
-		list[rep_check_l].seats[row_seats_number - 1][col_seats_number] = 1;
+		list[rep_check_l].seats[row_seats_number-1][col_seats_number-1] = 1;
 			
 			fp = fopen("data2.bin", "wb");
 			fwrite(list, sizeof(struct information), INFORM, fp);
