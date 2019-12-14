@@ -7,7 +7,7 @@
 int login_or_register()
 {
 
-	int  user_max=0;// user_max:현재 회원숫자, rep_check:중복체크 상수
+	int  user_max=1;// user_max:현재 회원숫자, rep_check:중복체크 상수
 	char userid[15], userpw[15];
 
 	struct information list[INFORM] = { 0 };
@@ -19,6 +19,7 @@ int login_or_register()
 	{
 		int option;
 		int rep_number = 1;             //중복 상수 중복되면 중복상수 1로 초기화
+		int rep_check = 0;
 
 
 		printf("■■■■■■■■\n■1. 회원가입 ■\n■2. 로 그 인 ■\n■3. 종료     ■\n■■■■■■■■\n");
@@ -28,16 +29,16 @@ int login_or_register()
 		FILE* fp = fopen("data2.bin", "rb");
 		fread(list, sizeof(struct information), INFORM, fp);
 
-		user_max = list[0].user_max1;
-
-		for (int i = 0; i < INFORM; i++)                        //현재 가입되어 있는 유저수를 체크
+		if (list[0].age == 0)
 		{
-			if (list[i].user_max1 >= user_max)
-			{
-				user_max = (list[i].user_max1)+1;
-				continue;
-			}
+			user_max = 0;
 		}
+		else
+			for (int i = 0; i < INFORM; i++)
+			{
+				if (list[i].user_max1 >= user_max)
+					user_max = list[i].user_max1 + 1;
+			}
 
 		
 		switch (option)
@@ -122,9 +123,11 @@ int login_or_register()
 					if (strcmp(list[rep_check].userid, userid) == 0 && strcmp(list[rep_check].userpw, userpw) == 0)            //해당배열의 아이디와 비번이같으면 로그인
 					{
 						printf("■■■■■■■■■■■■■■■■로그인 성공!■■■■■■■■■■■■■■■■\n\n");
-						printf("아이디 : %s\n이름 : %s\n나이 : %d \n\n", list[rep_check].userid, list[rep_check].name, list[rep_check].age);
+
+						printf("아이디 : %s\n이름 : %s\n나이 : %d\n\n", list[rep_check].userid, list[rep_check].name,list[rep_check].age);
+						fwrite(list, sizeof(struct information), INFORM, fp);
 						fclose(fp);
-						return 0;
+						return rep_check;
 					}
 				}
 				printf("비밀번호가 다릅니다\n");
