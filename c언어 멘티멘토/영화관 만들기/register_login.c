@@ -10,7 +10,7 @@ int login_or_register()
 
 
 	int  user_max = 0, rep_check = 0;                   // user_max:현재 회원숫자, rep_check:중복체크 상수
-	char userid[10], userpw[10];
+	char userid[15], userpw[15];
 
 
 	struct information
@@ -25,7 +25,7 @@ int login_or_register()
 
 	struct information list[INFORM] = { 0 };
 
-
+	memset(&list, 0, sizeof(list));
 	
 
 	while (1)
@@ -35,12 +35,13 @@ int login_or_register()
 		printf("■■■■■■■■\n■1. 회원가입 ■\n■2. 로 그 인 ■\n■3. 종료     ■\n■■■■■■■■\n");
 		scanf_s("%d", &option);
 		FILE* fp;
+		
 
 		switch (option)
 		{
 		case 1:
 			fp= fopen("data2.txt", "r");
-			fread(&list[user_max-1], sizeof(struct information), INFORM, fp);
+			fread(&list, sizeof(list), INFORM, fp);
 
 			if (list[INFORM-1].user_max1 !=NULL)          // 회원수 초과시 (회원수=5)
 			{
@@ -48,11 +49,12 @@ int login_or_register()
 				break;
 			}
 			printf("생성할 ID를 입력하세요 <최대 9자> :");
-			scanf_s("%s", list[user_max].userid,10);
+			scanf_s("%s", userid);
+			
 
 			for (rep_check = 0; rep_check < user_max; rep_check++)
 			{
-				if (strcmp(list[user_max].userid, list[rep_check].userid) == 0)
+				if (strcmp(userid, list[rep_check].userid) == 0)
 				{
 					printf("이미 생성된 ID입니다.\n\n");
 					rep_number = 0;
@@ -79,7 +81,7 @@ int login_or_register()
 
 			FILE* fp = fopen("data2.txt", "a");
 		
-			fwrite(&list[user_max - 1], sizeof(struct information), 1, fp);
+			fwrite(&list, sizeof(list), 1, fp);
 			fclose(fp);
 
 			break;
