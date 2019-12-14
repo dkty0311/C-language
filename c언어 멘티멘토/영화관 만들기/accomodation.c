@@ -1,13 +1,18 @@
 #include "accomodation.h"
+#include "register.h"
 #include <stdio.h>
 
-
+extern int rep_check;
 
 
 void accomodation(int seats[SIZE][SIZE])
 {
 	int i, c, row_seats_number, col_seats_number;
 
+	struct information list[INFORM] = { 0 };
+
+
+	FILE* fp = fopen("data2.bin", "rb");
 
 	start_menu();
 
@@ -41,6 +46,16 @@ void accomodation(int seats[SIZE][SIZE])
 		seats[row_seats_number - 1][col_seats_number - 1] = 1;
 
 		printf("예약되었습니다.\n");
+		fp = fopen("data2.bin", "wb");
+		if (row_seats_number == 0)
+		{
+			list[].seats
+		}
+		else
+		{
+			 list[rep_check].seats = (char)((row_seats_number * 10) + (col_seats_number));
+		}
+
 	}
 	else
 		printf("이미 예약된 좌석입니다.\n");

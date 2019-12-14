@@ -4,13 +4,13 @@
 #include "show_choice_menu.h"
 
 
+
 int main()
 {
 	int choice;
-	int seats[SIZE][SIZE] = { 0 };
 
 	login_or_register();
-
+	int seats[SIZE][SIZE] = { 0 };
 
 	while (1)
 	{
