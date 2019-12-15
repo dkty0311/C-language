@@ -29,6 +29,7 @@ int login_or_register()
 		FILE* fp = fopen("data2.bin", "rb");
 		fread(list, sizeof(struct information), INFORM, fp);
 
+
 		if (list[0].age == 0)
 		{
 			user_max = 0;
