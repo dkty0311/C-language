@@ -9,12 +9,12 @@ void accomodation_cancel(int seats[SIZE][SIZE], int rep_check_l)
 	struct information list[INFORM] = { 0 };
 
 
-	FILE* fp = fopen("data2.bin", "rb");
+	FILE* fp = fopen("data2.bin", "rb");                                               //공통 예약/비예약 좌석 읽어오기
 	FILE* form = fopen("data1.bin", "rb");
 	fread(seats, sizeof(seats[SIZE][SIZE]), 100, form);
 	fread(list, sizeof(struct information), INFORM, fp);
 
-	printf("예약된 좌석\n");
+	printf("※※※※%s※※※※회원님이 예약한 좌석\n",list[rep_check_l].userid);
 	for (int r = 0; r < SIZE; r++)
 	{
 		for (int c = 0; c < SIZE; c++)
@@ -55,21 +55,24 @@ void accomodation_cancel(int seats[SIZE][SIZE], int rep_check_l)
 
 	printf("원하는 좌석의 행과 열을 입력해주세요.");
 	scanf_s("%d %d", &row_seats_number, &col_seats_number);
-	if (list[rep_check_l].seats[row_seats_number - 1][col_seats_number - 1] == 1&&seats[row_seats_number-1][col_seats_number-1]==1)   //행과 열이 예약되어 있으면 취소
-	{
-					seats[row_seats_number - 1][col_seats_number - 1] = 0;
-					list[rep_check_l].seats[row_seats_number-1][col_seats_number-1] = 0;
-					printf("예약이 취소되었습니다.\n");           
-					fp = fopen("data2.bin", "wb");
-					fwrite(list, sizeof(struct information), INFORM, fp);
-					fclose(fp);
 
-					form = fopen("data1.bin", "wb");
-					fwrite(seats, sizeof(seats[SIZE][SIZE]), 100, form);
-					fclose(form);
-					
+	if (list[rep_check_l].seats[row_seats_number - 1][col_seats_number - 1] == 1 && seats[row_seats_number - 1][col_seats_number - 1] == 1)   //행과 열이 예약되어 있으면 취소
+	{
+		seats[row_seats_number - 1][col_seats_number - 1] = 0;
+		list[rep_check_l].seats[row_seats_number - 1][col_seats_number - 1] = 0;
+		printf("예약이 취소되었습니다.\n");
+		fp = fopen("data2.bin", "wb");
+		fwrite(list, sizeof(struct information), INFORM, fp);
+		fclose(fp);
+
+		form = fopen("data1.bin", "wb");
+		fwrite(seats, sizeof(seats[SIZE][SIZE]), 100, form);
+		fclose(form);
+
 	}
-	else                                                 //아니면 취소할 좌석이 없으면 출력
-		printf("예약되지 않은 좌석이거나 회원님이 예약한 좌석이 아닙니다.\n");
+	else if (seats[row_seats_number - 1][col_seats_number - 1] == 0)                                                //아니면 취소할 좌석이 없으면 출력
+		printf("좌석이 예약되지않아 취소할수 없습니다.\n");
+	else
+		printf("회원님이 예약한 좌석이 아닙니다.\n");
 
 }

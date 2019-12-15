@@ -16,7 +16,7 @@ void accomodation(int seats[SIZE][SIZE],int rep_check_l)
 	
 	
 
-	printf("예약된 좌석\n");
+	printf("※※※※%s※※※※회원님이 예약한 좌석\n", list[rep_check_l].userid);
 	for (int r = 0; r < SIZE; r++)
 	{
 		for (int c = 0; c < SIZE; c++)

@@ -49,7 +49,7 @@ int login_or_register()
 				printf("회원이 너무 많습니다.\n");
 				break;
 			}
-			printf("생성할 ID를 입력하세요 <최대 9자> :");
+			printf("생성할 ID를 입력하세요 <최대 15자> :");
 			scanf_s("%s", list[user_max].userid,15);
 
 			for (rep_check = 0; rep_check < user_max; rep_check++)
@@ -65,7 +65,7 @@ int login_or_register()
 			if (rep_number == 0)
 				break;
 			
-			printf("생성할 PW를 입력하세요 <최대 9자> :");
+			printf("생성할 PW를 입력하세요 <최대 15자> :");
 			scanf_s("%s", list[user_max].userpw,15);
 			
 			printf("이름을 입력해주세요");
@@ -130,7 +130,8 @@ int login_or_register()
 						return rep_check;
 					}
 				}
-				printf("비밀번호가 다릅니다\n");
+				printf("비밀번호가 다릅니다\n\n");
+				printf("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★\n");
 			}
 	
 
