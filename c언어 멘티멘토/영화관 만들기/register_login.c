@@ -8,7 +8,7 @@ int login_or_register()
 {
 
 	int  user_max=1;// user_max:현재 회원숫자, rep_check:중복체크 상수
-	char userid[15], userpw[15];
+	char userid[15] = { 0 }, userpw[15] = { 0 };
 
 	struct information list[INFORM] = { 0 };
 
