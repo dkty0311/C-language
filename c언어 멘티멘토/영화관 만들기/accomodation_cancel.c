@@ -23,7 +23,7 @@ void accomodation_cancel(int seats[SIZE][SIZE], int login_inform)
 		{
 			if (list[login_inform].seats[r][c] == 1)
 			{
-				printf("%d %d ", r + 1, c +1);
+				printf("  행:%d 열:%d     ", r + 1, c +1);
 
 
 			}
@@ -54,12 +54,36 @@ void accomodation_cancel(int seats[SIZE][SIZE], int login_inform)
 
 	end_menu();
 
+	while (1)
+	{
+		int check;
+		printf("취소할 좌석의 행을 입력해주세요.");
+		check = scanf("%d", &row_seats_number);
 
+		while (getchar() != '\n');
 
-	
+		if (check == 1)
+		{
+			break;
+		}
+		else
+			printf("올바른 행을 입력하세요\n");
+	}
+	while (1)
+	{
+		int check;
+		printf("취소할 좌석의 열을 입력해주세요.");
+		check = scanf("%d", &col_seats_number);
 
-		printf("취소할 좌석의 행과 열을 입력해주세요");
-		scanf_s("%d %d", &row_seats_number,&col_seats_number);
+		while (getchar() != '\n');
+
+		if (check == 1)
+		{
+			break;
+		}
+		else
+			printf("올바른 열을 입력하세요\n");
+	}
 
 
 	if (row_seats_number < 0 || row_seats_number>10 || col_seats_number < 0 || col_seats_number>10)
