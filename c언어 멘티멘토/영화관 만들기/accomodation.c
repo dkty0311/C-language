@@ -55,24 +55,9 @@ void accomodation(int seats[SIZE][SIZE],int login_inform)
 
 	
 
-	while (1)
-	{
-		int num = 0,num1=0;
-		printf("예약할 좌석의 행을 입력해주세요.");
-		num= scanf_s("%d", &row_seats_number);
-		printf("예약하 좌석의 열을 입력해주세요. ");
-		num1 = scanf_s("%d", &col_seats_number);
 
-		while (getchar() != '\n');
-
-		if (num == 1)
-		{
-
-			break;
-
-		}
-
-	}
+		printf("예약할 좌석의 행과 열을 입력해주세요.");
+		scanf("%d %d", &row_seats_number,&col_seats_number);
 
 	if (row_seats_number < 0 || row_seats_number>10 || col_seats_number < 0 || col_seats_number>10)
 	{
