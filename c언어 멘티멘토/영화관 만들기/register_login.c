@@ -73,7 +73,15 @@ int login_or_register()
 						break;
 					}
 					printf("생성할 ID를 입력하세요 <최대 15자> :");
-					scanf_s("%s", list[user_max].userid, 15);
+					scanf("%s", list[user_max].userid, 15);
+
+					int id_len = strlen(list[user_max].userid);
+
+					if (id_len > 15)
+					{
+						printf("영문포함 숫자 15자리 이하로 입력해주세요 \n");
+						break;
+					}
 
 					for (rep_check = 0; rep_check < user_max; rep_check++)
 					{
@@ -89,9 +97,18 @@ int login_or_register()
 						break;
 
 					printf("생성할 PW를 입력하세요 <최대 15자> :");
-					scanf_s("%s", list[user_max].userpw, 15);
+					scanf("%s", list[user_max].userpw, 15);
 
-					printf("이름을 입력해주세요");
+					int pw_len = strlen(list[user_max].userpw);
+
+					if (pw_len > 15)
+					{
+						printf("영문포함 숫자 15자리 이하로 입력해주세요\n");
+						break;
+					}
+
+
+					printf("이름을 입력해주세요: ");
 					scanf_s("%s", list[user_max].name, 30);              /////////////////////////////////////////////////////////
 
 					int num = 0;
@@ -99,7 +116,7 @@ int login_or_register()
 
 					while (1)
 					{
-						printf("나이를 입력하시오\n");
+						printf("나이를 입력하시오: ");
 
 						num = scanf_s("%d", &age); 
 
@@ -135,8 +152,16 @@ int login_or_register()
 
 					fread(list, sizeof(struct information), INFORM, fp);
 
-					printf("아이디를 입력하세요 : <최대15자>");
-					scanf_s("%s", userid, 15);
+					printf("아이디를 입력하세요 <최대15자> : ");
+					scanf("%s", userid, 15);
+
+					int id_len = strlen(userid);
+
+					if (id_len > 15)
+					{
+						printf("영문포함 숫자 15자리 이하로 입력해주세요 \n");
+						break;
+					}
 
 					for (rep_check = 0; rep_check <= user_max; rep_check++)
 					{
@@ -159,8 +184,16 @@ int login_or_register()
 					}
 					else if (list[try_check].login_try < 5)
 					{
-							printf("패스워드를 입력하세요 <최대15자>:");
+							printf("패스워드를 입력하세요 <최대15자> : ");
 							scanf_s("%s", userpw, 15);
+
+							int pw_len = strlen(userpw);
+
+							if (pw_len > 15)
+							{
+								printf("영문포함 숫자 15자리 이하로 입력해주세요\n");
+								break;
+							}
 	
 							for (rep_check = 0; rep_check < INFORM; rep_check++)
 							{
