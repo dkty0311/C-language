@@ -78,6 +78,11 @@ int login_or_register()
 					printf("나이를 입력해주세요");
 					scanf_s("%d", &list[user_max].age);                 ///////////////////////////////////////////////////////////////////
 
+					if (isdigit(list[user_max].age))
+						continue;
+					else
+						break;
+
 					printf("가입을 축하합니다!!\n");
 
 					list[user_max].user_max1 = user_max;
