@@ -25,8 +25,6 @@ void accomodation(int seats[SIZE][SIZE],int login_inform)
 			if (list[login_inform].seats[r][c] ==1)
 			{
 				printf("За:%d ї­:%d ", r+1, c+1);
-				
-
 			}
 		}
 	}

@@ -95,7 +95,7 @@ int login_or_register()
 				while (1)
 				{
 					int a;
-					int try_check=0;
+					int try_check=-1;
 		
 					fp = fopen("data2.bin", "rb");
 
@@ -112,45 +112,52 @@ int login_or_register()
 
 					for (rep_check = 0; rep_check <= user_max; rep_check++)
 					{
-
 						if (strcmp(list[rep_check].userid, userid) == 0)
 						{
 							try_check = rep_check;
 							break;
-
 						}
 					}
 
 					if (list[try_check].login_try == 5)
 					{
 						printf("로그인 시도를 5회 초과하였습니다 해당계정으로 로그인 할 수 없습니다.\n\n");
+						break;
 					}
-
-					printf("패스워드를 입력하세요 <최대15자>:");
-					scanf_s("%s", userpw, 15);
-	
-					for (rep_check = 0; rep_check < INFORM; rep_check++)
+					else if (try_check == -1)
 					{
-						if (strcmp(list[rep_check].userid, userid) == 0 && strcmp(list[rep_check].userpw, userpw) == 0)            //해당배열의 아이디와 비번이같으면 로그인
-						{
-							printf("■■■■■■■■■■■■■■■■로그인 성공!■■■■■■■■■■■■■■■■\n\n");
+						printf("없는 아이디 입니다.\n\n");
+						break;
+					}
+					else if (list[try_check].login_try < 5)
+					{
+							printf("패스워드를 입력하세요 <최대15자>:");
+							scanf_s("%s", userpw, 15);
+	
+							for (rep_check = 0; rep_check < INFORM; rep_check++)
+							{
+								if (strcmp(list[rep_check].userid, userid) == 0 && strcmp(list[rep_check].userpw, userpw) == 0)            //해당배열의 아이디와 비번이같으면 로그인
+								{
+									printf("■■■■■■■■■■■■■■■■로그인 성공!■■■■■■■■■■■■■■■■\n\n");
 
-							printf("아이디 : %s\n이름 : %s\n나이 : %d\n\n", list[rep_check].userid, list[rep_check].name, list[rep_check].age);
-							list[rep_check].login_try = 0;
+									printf("아이디 : %s\n이름 : %s\n나이 : %d\n\n", list[rep_check].userid, list[rep_check].name, list[rep_check].age);
+									list[rep_check].login_try = 0;
+									fp = fopen("data2.bin", "wb");
+									fwrite(list, sizeof(struct information), INFORM, fp);
+									fclose(fp);
+									return rep_check;
+								}
+							}
 							fp = fopen("data2.bin", "wb");
+							list[try_check].login_try += 1;
 							fwrite(list, sizeof(struct information), INFORM, fp);
 							fclose(fp);
-							return rep_check;
-						}
+							printf("비밀번호가 다릅니다\n\n현재초과횟수:%d회 5회초과시 해당아이디 로그인 불가\n\n", list[try_check].login_try);
+							printf("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★\n");
+							break;
 					}
-
-					fp = fopen("data2.bin", "wb");
-					list[try_check].login_try += 1;
-					fwrite(list, sizeof(struct information), INFORM, fp);
-					fclose(fp);
-					printf("비밀번호가 다릅니다\n\n현재초과횟수:%d회 5회초과시 해당아이디 로그인 불가\n\n",list[try_check].login_try);
-					printf("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★\n");
 				}
+				break;
 			}
 			case 3:
 				exit();
