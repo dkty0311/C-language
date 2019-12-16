@@ -3,13 +3,14 @@
 #include "register.h"
 
 
+
 int login_or_register()
 {
 
 	int  user_max=1;// user_max:현재 회원숫자, rep_check:중복체크 상수
 	char userid[15] = { 0 }, userpw[15] = { 0 };
 
-	struct information list[INFORM] = { 0 };
+	
 
 
 	
@@ -21,8 +22,26 @@ int login_or_register()
 		int rep_check = 0;
 
 
-		printf("■■■■■■■■\n■1. 회원가입 ■\n■2. 로 그 인 ■\n■3. 종료     ■\n■■■■■■■■\n");
-		scanf_s("%d", &option);
+		while (1)
+		{
+			int option1;
+			printf("■■■■■■■■\n■1. 회원가입 ■\n■2. 로 그 인 ■\n■3. 종료     ■\n■■■■■■■■\n");
+
+			option1= scanf_s("%d", &option);
+
+			while (getchar() != '\n');
+
+			if (option1 == 1)
+			{
+				break;
+			}
+			else
+				printf("xxxxxxx올바른 메뉴를 선택해주세요xxxxxxx\n");
+
+		}
+
+
+		struct information list[INFORM] = { 0 };
 		
 
 		FILE* fp = fopen("data2.bin", "rb");
@@ -55,11 +74,11 @@ int login_or_register()
 					}
 					printf("생성할 ID를 입력하세요 <최대 15자> :");
 					scanf_s("%s", list[user_max].userid, 15);
-	
+
 					for (rep_check = 0; rep_check < user_max; rep_check++)
 					{
 						if (strcmp(list[user_max].userid, list[rep_check].userid) == 0)
-							{
+						{
 							printf("이미 생성된 ID입니다.\n\n");
 							rep_number = 0;
 							break;
@@ -75,14 +94,25 @@ int login_or_register()
 					printf("이름을 입력해주세요");
 					scanf_s("%s", list[user_max].name, 30);              /////////////////////////////////////////////////////////
 
-					printf("나이를 입력해주세요");
-					scanf_s("%d", &list[user_max].age);                 ///////////////////////////////////////////////////////////////////
+					int num = 0;
+					int age = 0;
 
-					if (isdigit(list[user_max].age))
-						continue;
-					else
-						break;
+					while (1)
+					{
+						printf("나이를 입력하시오\n");
 
+						num = scanf_s("%d", &age); 
+
+						while (getchar() != '\n');
+
+						if (num == 1)
+						{
+							list[user_max].age = age;
+							break;
+
+						}
+
+					}				
 					printf("가입을 축하합니다!!\n");
 
 					list[user_max].user_max1 = user_max;
@@ -158,7 +188,7 @@ int login_or_register()
 				break;
 			}
 			case 3:
-				exit();
+				exit(0);
 			default:
 				printf("◆◆◆◆◆◆◆◆◆◆올바른 메뉴를 선택해주세요◆◆◆◆◆◆◆◆◆◆\n");
 				break;
