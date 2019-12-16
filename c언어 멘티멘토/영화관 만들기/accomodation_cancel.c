@@ -57,7 +57,7 @@ void accomodation_cancel(int seats[SIZE][SIZE], int login_inform)
 	
 
 		printf("취소할 좌석의 행과 열을 입력해주세요");
-		scanf_s("%d %d", &row_seats_number);
+		scanf_s("%d %d", &row_seats_number,&col_seats_number);
 
 
 	if (row_seats_number < 0 || row_seats_number>10 || col_seats_number < 0 || col_seats_number>10)
