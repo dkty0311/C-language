@@ -3,29 +3,28 @@
 #include <stdio.h>
 
 
-void accomodation(int seats[SIZE][SIZE],int rep_check_l)
+void accomodation(int seats[SIZE][SIZE],int login_inform)
 {
 	int i, c, row_seats_number, col_seats_number;
 
-	struct information list[INFORM] = { 0 };
+	struct information list[5] = { 0 };
 
 	FILE* fp = fopen("data2.bin", "rb");
 	FILE* form = fopen("data1.bin", "rb");
+
 	fread(seats, sizeof(seats[SIZE][SIZE]), 100, form);
 	fread(list, sizeof(struct information), INFORM, fp);
 	
 	
 
-	printf("※※※※%s※※※※회원님이 예약한 좌석\n", list[rep_check_l].userid);
+	printf("※※※※%s※※※※회원님이 예약한 좌석\n", list[login_inform].userid);
 	for (int r = 0; r < SIZE; r++)
 	{
 		for (int c = 0; c < SIZE; c++)
 		{
-			if (list[rep_check_l].seats[r][c] ==1)
+			if (list[login_inform].seats[r][c] ==1)
 			{
 				printf("행:%d 열:%d ", r+1, c+1);
-				
-
 			}
 		}
 	}
@@ -54,16 +53,19 @@ void accomodation(int seats[SIZE][SIZE],int rep_check_l)
 	end_menu();
 
 
-	printf("원하는 좌석의 행과 열을 입력해주세요.");
+	printf("예약할 좌석의 행과 열을 입력해주세요.");
 	scanf_s("%d %d", &row_seats_number, &col_seats_number);
 
-	if (seats[row_seats_number-1][col_seats_number-1] == 0)
+	if (row_seats_number < 0 || row_seats_number>10 || col_seats_number < 0 || col_seats_number>10)
+	{
+		printf("알맞은 좌석 정보를 입력해주세요\n");
+	}
+	else if (seats[row_seats_number-1][col_seats_number-1] == 0)
 	{
 		seats[row_seats_number-1][col_seats_number-1] = 1;
 
 		printf("예약되었습니다.\n");
-		
-		list[rep_check_l].seats[row_seats_number-1][col_seats_number-1] = 1;
+		list[login_inform].seats[row_seats_number-1][col_seats_number-1] = 1;
 			
 			fp = fopen("data2.bin", "wb");
 			fwrite(list, sizeof(struct information), INFORM, fp);
@@ -73,8 +75,10 @@ void accomodation(int seats[SIZE][SIZE],int rep_check_l)
 
 			fwrite(seats, sizeof(seats[SIZE][SIZE]), 100, form);
 			fclose(form);
-
 	}
-	else
+	else if(seats[row_seats_number - 1][col_seats_number - 1] == 1)
+	{
 		printf("이미 예약된 좌석입니다.\n");
+	}
+		
 }

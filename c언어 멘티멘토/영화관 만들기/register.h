@@ -12,6 +12,7 @@ struct information
 	char name[30];
 	int user_max1;
 	char seats[10][10];
+	int login_try;
 };
 
 

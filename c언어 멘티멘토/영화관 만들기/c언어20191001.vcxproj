@@ -146,7 +146,6 @@
   <ItemGroup>
     <ClCompile Include="accomodation.c" />
     <ClCompile Include="accomodation_cancel.c" />
-    <ClCompile Include="choice_menu.c" />
     <ClCompile Include="menu_design.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="register_login.c" />

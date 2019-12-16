@@ -1,12 +1,12 @@
 #pragma once
 #define SIZE 10
-#define INFORM 5
-void accomodation(int seats[SIZE][SIZE], int rep_check_l);
-void accomodation_cancel(int seats[SIZE][SIZE], int rep_check_l);
+
+void accomodation(int seats[SIZE][SIZE], int login_inform);
+void accomodation_cancel(int seats[SIZE][SIZE], int login_inform);
 
 
 
-struct accomodation
+struct accomodation                 //공통 영화관 좌석
 {
 	int seats[10][10];
 };

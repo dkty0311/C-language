@@ -35,9 +35,6 @@
     <ClCompile Include="accomodation_cancel.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="choice_menu.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="menu_design.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
