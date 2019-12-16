@@ -14,7 +14,9 @@ void accomodation_cancel(int seats[SIZE][SIZE], int login_inform)
 	fread(seats, sizeof(seats[SIZE][SIZE]), 100, form);
 	fread(list, sizeof(struct information), INFORM, fp);
 
-	printf("※※※※%s※※※※회원님이 예약한 좌석\n",list[login_inform].userid);
+	printf("※※※※%s※※※※\n회원님이 예약한 좌석\n",list[login_inform].userid);
+
+
 	for (int r = 0; r < SIZE; r++)
 	{
 		for (int c = 0; c < SIZE; c++)
