@@ -60,6 +60,7 @@ void accomodation(int seats[SIZE][SIZE],int login_inform)
 		int num = 0,num1=0;
 		printf("예약할 좌석의 행을 입력해주세요.");
 		num=scanf_s("%d", &row_seats_number);
+		printf("예약하 좌석의 열을 입력해주세요");
 		num1 = scanf_s("%d", &col_seats_number);
 
 		while (getchar() != '\n');

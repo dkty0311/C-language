@@ -57,9 +57,9 @@ void accomodation_cancel(int seats[SIZE][SIZE], int login_inform)
 	while (1)
 	{
 		int num = 0, num1 = 0;
-		printf("취소할 좌석의 행과 열을 입력해주세요");
-		scanf_s("%d %d", &row_seats_number, &col_seats_number);
+		printf("취소할 좌석의 행을 입력해주세요");
 		num = scanf_s("%d", &row_seats_number);
+		printf("취소할 좌석의 열을입력해주세요");
 		num1 = scanf_s("%d", &col_seats_number);
 
 		while (getchar() != '\n');
