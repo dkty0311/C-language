@@ -8,7 +8,7 @@ int login_or_register()
 {
 
 	int  user_max=1;// user_max:현재 회원숫자, rep_check:중복체크 상수
-	char userid[15], userpw[15];
+	char userid[15] = { 0 }, userpw[15] = { 0 };
 
 	struct information list[INFORM] = { 0 };
 
@@ -35,23 +35,24 @@ int login_or_register()
 			user_max = 0;
 		}
 		else
+		{
 			for (int i = 0; i < INFORM; i++)
 			{
 				if (list[i].user_max1 >= user_max)
 					user_max = list[i].user_max1 + 1;
 			}
+		}
 
 		
-		switch (option)
+		if (option == 1)
 		{
-		case 1:
-			if (user_max==INFORM)          // 회원수 초과시 (회원수=5)
+			if (user_max == INFORM)          // 회원수 초과시 (회원수=5)
 			{
 				printf("회원이 너무 많습니다.\n");
 				break;
 			}
-			printf("생성할 ID를 입력하세요 <최대 9자> :");
-			scanf_s("%s", list[user_max].userid,15);
+			printf("생성할 ID를 입력하세요 <최대 15자> :");
+			scanf_s("%s", list[user_max].userid, 15);
 
 			for (rep_check = 0; rep_check < user_max; rep_check++)
 			{
@@ -65,10 +66,10 @@ int login_or_register()
 
 			if (rep_number == 0)
 				break;
-			
-			printf("생성할 PW를 입력하세요 <최대 9자> :");
-			scanf_s("%s", list[user_max].userpw,15);
-			
+
+			printf("생성할 PW를 입력하세요 <최대 15자> :");
+			scanf_s("%s", list[user_max].userpw, 15);
+
 			printf("이름을 입력해주세요");
 			scanf_s("%s", list[user_max].name, 30);              /////////////////////////////////////////////////////////
 
@@ -81,13 +82,13 @@ int login_or_register()
 
 			fp = fopen("data2.bin", "wb");
 
-			fwrite(list, sizeof(struct information), INFORM, fp);  
+			fwrite(list, sizeof(struct information), INFORM, fp);
 			fclose(fp);
-			
+
 			break;
-
-
-		case 2:
+		}
+		else if (option == 2)
+		{
 			while (1)
 			{
 
@@ -100,7 +101,7 @@ int login_or_register()
 					printf("%s %s %s %d %d", list[i].userid, list[i].userpw, list[i].name, list[i].age, list[i].user_max1);
 					printf("\n");
 				}
-				printf("아이디를 입력하세요 :");
+				printf("아이디를 입력하세요 : <최대15자>");
 				scanf_s("%s", userid, 15);
 
 				for (rep_check = 0; rep_check <= user_max; rep_check++)
@@ -111,12 +112,10 @@ int login_or_register()
 						break;
 
 					}
-					else
-						continue;
 				}
-			
 
-				printf("패스워드를 입력하세요 :");
+
+				printf("패스워드를 입력하세요 : <최대15자>");
 				scanf_s("%s", userpw, 15);
 
 				for (rep_check = 0; rep_check < INFORM; rep_check++)
@@ -125,18 +124,19 @@ int login_or_register()
 					{
 						printf("■■■■■■■■■■■■■■■■로그인 성공!■■■■■■■■■■■■■■■■\n\n");
 
-						printf("아이디 : %s\n이름 : %s\n나이 : %d\n\n", list[rep_check].userid, list[rep_check].name,list[rep_check].age);
+						printf("아이디 : %s\n이름 : %s\n나이 : %d\n\n", list[rep_check].userid, list[rep_check].name, list[rep_check].age);
 						fwrite(list, sizeof(struct information), INFORM, fp);
 						fclose(fp);
 						return rep_check;
 					}
 				}
-				printf("비밀번호가 다릅니다\n");
+				printf("비밀번호가 다릅니다\n\n");
+				printf("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★\n");
+				break;
 			}
-	
-
-		case 3:
-			exit();
 		}
+		else if (option == 3)
+			exit();
+		
 	}
 }
