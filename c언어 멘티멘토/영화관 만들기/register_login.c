@@ -8,7 +8,7 @@ int login_or_register()
 {
 
 	int  user_max=1;// user_max:현재 회원숫자, rep_check:중복체크 상수
-	char userid[15] = { 0 }, userpw[15] = { 0 };
+	char userid[15], userpw[15];
 
 	struct information list[INFORM] = { 0 };
 
@@ -101,7 +101,7 @@ int login_or_register()
 					printf("%s %s %s %d %d", list[i].userid, list[i].userpw, list[i].name, list[i].age, list[i].user_max1);
 					printf("\n");
 				}
-				printf("아이디를 입력하세요 : <최대15자>");
+				printf("아이디를 입력하세요 :");
 				scanf_s("%s", userid, 15);
 
 				for (rep_check = 0; rep_check <= user_max; rep_check++)
@@ -115,7 +115,7 @@ int login_or_register()
 				}
 
 
-				printf("패스워드를 입력하세요 : <최대15자>");
+				printf("패스워드를 입력하세요 :");
 				scanf_s("%s", userpw, 15);
 
 				for (rep_check = 0; rep_check < INFORM; rep_check++)
