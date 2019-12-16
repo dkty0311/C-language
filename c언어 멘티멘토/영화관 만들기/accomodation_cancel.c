@@ -55,8 +55,11 @@ void accomodation_cancel(int seats[SIZE][SIZE], int login_inform)
 
 	printf("취소할 좌석의 행과 열을 입력해주세요");
 	scanf_s("%d %d", &row_seats_number, &col_seats_number);
-
-	if (list[login_inform].seats[row_seats_number - 1][col_seats_number - 1] == 1 && seats[row_seats_number - 1][col_seats_number - 1] == 1)   //행과 열이 예약되어 있으면 취소
+	if (row_seats_number < 0 || row_seats_number>10 || col_seats_number < 0 || col_seats_number>10)
+	{
+		printf("알맞은 좌석 정보를 입력해주세요\n");
+	}
+	else if (list[login_inform].seats[row_seats_number - 1][col_seats_number - 1] == 1 && seats[row_seats_number - 1][col_seats_number - 1] == 1)   //행과 열이 예약되어 있으면 취소
 	{
 		seats[row_seats_number - 1][col_seats_number - 1] = 0;
 		list[login_inform].seats[row_seats_number - 1][col_seats_number - 1] = 0;

@@ -56,12 +56,15 @@ void accomodation(int seats[SIZE][SIZE],int login_inform)
 	printf("예약할 좌석의 행과 열을 입력해주세요.");
 	scanf_s("%d %d", &row_seats_number, &col_seats_number);
 
-	if (seats[row_seats_number-1][col_seats_number-1] == 0)
+	if (row_seats_number < 0 || row_seats_number>10 || col_seats_number < 0 || col_seats_number>10)
+	{
+		printf("알맞은 좌석 정보를 입력해주세요\n");
+	}
+	else if (seats[row_seats_number-1][col_seats_number-1] == 0)
 	{
 		seats[row_seats_number-1][col_seats_number-1] = 1;
 
 		printf("예약되었습니다.\n");
-		
 		list[login_inform].seats[row_seats_number-1][col_seats_number-1] = 1;
 			
 			fp = fopen("data2.bin", "wb");
@@ -72,8 +75,10 @@ void accomodation(int seats[SIZE][SIZE],int login_inform)
 
 			fwrite(seats, sizeof(seats[SIZE][SIZE]), 100, form);
 			fclose(form);
-
 	}
-	else
+	else if(seats[row_seats_number - 1][col_seats_number - 1] == 1)
+	{
 		printf("이미 예약된 좌석입니다.\n");
+	}
+		
 }
