@@ -53,7 +53,7 @@ void accomodation(int seats[SIZE][SIZE],int login_inform)
 	end_menu();
 
 
-	printf("원하는 좌석의 행과 열을 입력해주세요.");
+	printf("예약할 좌석의 행과 열을 입력해주세요.");
 	scanf_s("%d %d", &row_seats_number, &col_seats_number);
 
 	if (seats[row_seats_number-1][col_seats_number-1] == 0)

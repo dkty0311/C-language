@@ -94,18 +94,11 @@ int login_or_register()
 			{
 				while (1)
 				{
-					int a;
 					int try_check=-1;
 		
 					fp = fopen("data2.bin", "rb");
 
 					fread(list, sizeof(struct information), INFORM, fp);
-
-					for (int i = 0; i < INFORM; i++)
-					{
-						printf("%s %s %s %d %d try%d", list[i].userid, list[i].userpw, list[i].name, list[i].age, list[i].user_max1,list[i].login_try);
-						printf("\n");
-					}
 
 					printf("아이디를 입력하세요 : <최대15자>");
 					scanf_s("%s", userid, 15);

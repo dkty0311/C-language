@@ -71,7 +71,7 @@ void accomodation_cancel(int seats[SIZE][SIZE], int login_inform)
 
 	}
 	else if (seats[row_seats_number - 1][col_seats_number - 1] == 0)                                                //아니면 취소할 좌석이 없으면 출력
-		printf("좌석이 예약되지않아 취소할수 없습니다.\n");
+		printf("예약된 좌석이 아닙니다.\n");
 	else
 		printf("회원님이 예약한 좌석이 아닙니다.\n");
 
